@@ -1,8 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
-
 
 class LocationListItem extends StatelessWidget {
   LocationListItem({
@@ -104,7 +101,6 @@ class ParallaxFlowDelegate extends FlowDelegate {
     required this.listItemContext,
     required this.backgroundImageKey,
   }) : super(repaint: scrollable.position);
-
 
   final ScrollableState scrollable;
   final BuildContext listItemContext;
@@ -284,4 +280,3 @@ class Location {
   final String place;
   final String imageUrl;
 }
-

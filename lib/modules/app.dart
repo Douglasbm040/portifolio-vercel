@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:porfolio/modules/home/components/timelinecertification.dart';
 import 'package:porfolio/modules/home/home.dart';
 
 class App extends StatelessWidget {
@@ -13,7 +14,7 @@ class App extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(title: 'Flutter Demo Home Page'),
+      home: const HomePage(),
     );
   }
 }

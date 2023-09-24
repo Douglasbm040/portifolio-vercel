@@ -2,11 +2,11 @@ import 'package:fade_scroll_app_bar/fade_scroll_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:porfolio/modules/home/components/locationlistitem.dart';
+import 'package:porfolio/modules/home/components/timelinecertification.dart';
+import 'package:video_player/video_player.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
-
-  final String title;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -14,11 +14,40 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final ScrollController _scrollController = ScrollController();
+  late VideoPlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.asset('assets/mockup.mp4')
+      ..initialize().then((_) {
+        setState(() {});
+        _controller.play();
+        _controller.setLooping(true);
+      });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    List<Widget> pages = [
+      TimeLineListItem(
+        heigth: height,
+        width: width,
+      ),
+      Container(
+        color: Colors.amber,
+        height: height,
+        width: width,
+      )
+    ];
     return Scaffold(
       body: FadeScrollAppBar(
         scrollController: _scrollController,
@@ -93,7 +122,7 @@ class _HomePageState extends State<HomePage> {
         ),
         appBarForegroundColor: Colors.black,
         pinned: true,
-        fadeOffset: 350,
+        fadeOffset: 150,
         expandedHeight: height,
         backgroundColor: Colors.white,
         fadeWidget: Container(
@@ -113,6 +142,37 @@ class _HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        /*const Column(
+                          children: [
+                            Card(
+                              elevation: 4,
+                              child: Column(
+                                children: [
+                                  Icon(Icons.flutter_dash_rounded),
+                                  Text("Flutter")
+                                ],
+                              ),
+                            ),
+                            Card(
+                              elevation: 4,
+                              child: Column(
+                                children: [
+                                  Icon(Icons.flutter_dash_rounded),
+                                  Text("Flutter")
+                                ],
+                              ),
+                            ),
+                            Card(
+                              elevation: 4,
+                              child: Column(
+                                children: [
+                                  Icon(Icons.flutter_dash_rounded),
+                                  Text("Flutter")
+                                ],
+                              ),
+                            )
+                          ],
+                        ),*/
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -137,21 +197,27 @@ class _HomePageState extends State<HomePage> {
                                       )),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(190, 20, 0, 0),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "Apaixonado por tecnologia mobile\ne inteligencia artificial",
-                                    style: GoogleFonts.bebasNeue(
-                                      textStyle: Theme.of(context)
-                                          .textTheme
-                                          .headline3
-                                          ?.copyWith(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w100),
-                                    ),
-                                  ),
-                                ],
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 18.0, horizontal: 150),
+                              child: Text(
+                                """   
+                                Desenvolvedor Mobile apaixonado por explorar
+                                as possibilidades da tecnologia para criar 
+                                soluções inovadoras.Com experiência em Flutter
+                                e conhecimentos sólidos em desenvolvimento Android,
+                                estou constantemente em busca de desafios que me 
+                                permitam aplicar minhas habilidades e conhecimentos para 
+                                impactar positivamente a vida das pessoas.
+                                """,
+                                style: GoogleFonts.bebasNeue(
+                                  fontSize: 15,
+                                  textStyle: Theme.of(context)
+                                      .textTheme
+                                      .headline3
+                                      ?.copyWith(
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.w100),
+                                ),
                               ),
                             )
                           ],
@@ -159,7 +225,15 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  Image.network(""),
+                  SizedBox(
+                      height: 500,
+                      width: 500,
+                      child: Image.asset("images/phone.png")),
+
+                  /*AspectRatio(
+                          aspectRatio: _controller.value.aspectRatio,
+                          child: VideoPlayer(_controller),
+                        ),*/
                 ],
               ),
             ],
@@ -178,17 +252,18 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         child: ListView.builder(
-          itemCount: 4,
+          itemCount: pages.length,
           itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: LocationListItem(
-                imageUrl:
-                    "https://docs.flutter.dev/cookbook/img-files/effects/parallax/01-mount-rushmore.jpg",
-                name: "asd",
-                country: "as",
-              ),
-            );
+            return SizedBox(
+                height: height,
+                width: width,
+                child: pages[
+                    index]); /* LocationListItem(
+              imageUrl:
+                  "https://docs.flutter.dev/cookbook/img-files/effects/parallax/01-mount-rushmore.jpg",
+              name: "asd",
+              country: "as",
+            );*/
           },
         ),
       ),
