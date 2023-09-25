@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
     double width = MediaQuery.of(context).size.width;
     List<Widget> pages = [
       TimeLineListItem(
+        index: 1,
         heigth: height,
         width: width,
       ),
@@ -255,10 +256,14 @@ class _HomePageState extends State<HomePage> {
           itemCount: pages.length,
           itemBuilder: (BuildContext context, int index) {
             return SizedBox(
-                height: height,
+              height: height,
+              width: width,
+              child: TimeLineListItem(
+                index: index,
+                heigth: height,
                 width: width,
-                child: pages[
-                    index]); /* LocationListItem(
+              ),
+            ); /* LocationListItem(
               imageUrl:
                   "https://docs.flutter.dev/cookbook/img-files/effects/parallax/01-mount-rushmore.jpg",
               name: "asd",
