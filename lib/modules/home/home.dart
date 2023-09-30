@@ -1,10 +1,8 @@
 import 'dart:html';
 
-import 'package:fade_scroll_app_bar/fade_scroll_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:icons_flutter/icons_flutter.dart';
-import 'package:porfolio/modules/home/components/locationlistitem.dart';
 import 'package:porfolio/modules/home/components/timelinecertification.dart';
 import 'package:video_player/video_player.dart';
 
@@ -179,6 +177,7 @@ class _HomePageState extends State<HomePage> {
               //controller: _pageController,
               children: [
                 inicialpage(
+                  index: currentPage,
                   heigth: height,
                   width: width,
                 ),
@@ -216,9 +215,11 @@ class inicialpage extends StatelessWidget {
     super.key,
     required this.width,
     required this.heigth,
+    required this.index,
   });
   final double width;
   final double heigth;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -234,76 +235,135 @@ class inicialpage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+          index != 0
+              ? Container()
+              : Row(
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "\u{1F44B} Oi, eu sou o Douglas",
-                          style: GoogleFonts.delaGothicOne(
-                              fontSize: 15,
-                              textStyle: Theme.of(context)
-                                  .textTheme
-                                  .headline2
-                                  ?.copyWith(color: Colors.black)),
-                        ),
-                        Text(
-                          "Mobile\nDeveloper",
-                          style: GoogleFonts.delaGothicOne(
-                              fontSize: 95,
-                              textStyle: Theme.of(context)
-                                  .textTheme
-                                  .headline1
-                                  ?.copyWith(
-                                    color: Colors.black87,
-                                  )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 18.0, horizontal: 150),
-                          child: Text(
-                            """   
-                        Desenvolvedor Mobile apaixonado por explorar
-                        as possibilidades da tecnologia para criar 
-                        soluções inovadoras.Com experiência em Flutter
-                        e conhecimentos sólidos em desenvolvimento Android,
-                        estou constantemente em busca de desafios que me 
-                        permitam aplicar minhas habilidades e conhecimentos para 
-                        impactar positivamente a vida das pessoas.
-                        """,
-                            style: GoogleFonts.bebasNeue(
-                              fontSize: 15,
-                              textStyle: Theme.of(context)
-                                  .textTheme
-                                  .headline3
-                                  ?.copyWith(
-                                      color: Colors.black54,
-                                      fontWeight: FontWeight.w100),
-                            ),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Stack(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Animate(
+                                    effects: const [
+                                      FadeEffect(duration: Duration(seconds: 1))
+                                    ],
+                                    child: Text(
+                                      "\u{1F44B} Oi, eu sou o Douglas",
+                                      style: GoogleFonts.delaGothicOne(
+                                          fontSize: 15,
+                                          textStyle: Theme.of(context)
+                                              .textTheme
+                                              .headline2
+                                              ?.copyWith(color: Colors.black)),
+                                    ),
+                                  ),
+                                  Animate(
+                                    effects: const [
+                                      FadeEffect(duration: Duration(seconds: 2))
+                                    ],
+                                    child: Text(
+                                      "Mobile\nDeveloper",
+                                      style: GoogleFonts.delaGothicOne(
+                                          fontSize: 95,
+                                          textStyle: Theme.of(context)
+                                              .textTheme
+                                              .headline1
+                                              ?.copyWith(
+                                                color: Colors.black87,
+                                              )),
+                                    ),
+                                  ),
+                                  Animate(
+                                    effects: const [
+                                      FadeEffect(duration: Duration(seconds: 2))
+                                    ],
+                                    child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 18.0, horizontal: 150),
+                                        child: Text.rich(
+                                          TextSpan(children: [
+                                            TextSpan(
+                                              text: """   
+                              Desenvolvedor Mobile apaixonado por explorar
+                              as possibilidades da tecnologia para criar 
+                              soluções inovadoras.Com experiência em Flutter
+                              e conhecimentos sólidos em desenvolvimento Android,
+                              estou constantemente em busca de desafios que me 
+                              permitam aplicar minhas habilidades e conhecimentos para 
+                              impactar positivamente a vida das pessoas.
+                              """,
+                                              style: GoogleFonts.bebasNeue(
+                                                fontSize: 15,
+                                                textStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .headline3
+                                                    ?.copyWith(
+                                                        color: Colors.black54,
+                                                        fontWeight:
+                                                            FontWeight.w100),
+                                              ),
+                                            ),
+                                          ]),
+                                        )),
+                                  )
+                                ],
+                              ),
+                              Animate(
+                                effects: const [
+                                  FadeEffect(duration: Duration(seconds: 3))
+                                ],
+                                child: Positioned(
+                                  right: 50,
+                                  top: 25,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Image.network(
+                                        "https://img.icons8.com/fluency/96/000000/android-os.png",
+                                      ),
+                                      Column(
+                                        children: [
+                                          Image.network(
+                                              "https://img.icons8.com/fluency/96/000000/flutter.png"),
+                                          SizedBox(
+                                            height: 30,
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        )
-                      ],
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                  height: 500,
-                  width: 500,
-                  child: Image.asset("images/phone.png")),
+                    Animate(
+                      effects: const [
+                        FadeEffect(duration: Duration(seconds: 3))
+                      ],
+                      child: SizedBox(
+                          height: 500,
+                          width: 500,
+                          child: Image.asset("images/phone.png")),
+                    ),
 
-              /*AspectRatio(
+                    /*AspectRatio(
                   aspectRatio: _controller.value.aspectRatio,
                   child: VideoPlayer(_controller),
                 ),*/
-            ],
-          ),
+                  ],
+                ),
         ],
       ),
     );

@@ -72,7 +72,7 @@ class _TimeLineListItemState extends State<TimeLineListItem> {
               widget.index == 1
                   ? Animate(
                       effects: const [
-                        FadeEffect(duration: Duration(seconds: 5))
+                        FadeEffect(duration: Duration(seconds: 2))
                       ],
                       child: SizedBox(
                         height: widget.heigth,
