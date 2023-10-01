@@ -21,6 +21,13 @@ class TimeLineListItem extends StatefulWidget {
 }
 
 class _TimeLineListItemState extends State<TimeLineListItem> {
+  double _currentSliderValue = 1;
+  List<String> slidtext = [
+    "Ate 1 ano",
+    "Entre 1 a 2 anos",
+    "Entre 2 a 3 anos",
+    "Mais de 3 anos"
+  ];
   List<String> mensagens = [
     "Pós graduando em cidades inteligentes - UFES",
     "Iniciação cientifica - UFES",
@@ -74,61 +81,64 @@ class _TimeLineListItemState extends State<TimeLineListItem> {
                       effects: const [
                         FadeEffect(duration: Duration(seconds: 2))
                       ],
-                      child: SizedBox(
-                        height: widget.heigth,
-                        width: 300,
-                        child: Padding(
-                          padding: const EdgeInsets.all(35.0),
-                          child: Timeline.tileBuilder(
-                            theme: TimelineThemeData(
-                              color: Colors.amber,
-                            ),
-                            builder: TimelineTileBuilder.connectedFromStyle(
-                              contentsAlign: ContentsAlign.basic,
-                              connectionDirection: ConnectionDirection.before,
-                              lastConnectorStyle: ConnectorStyle.transparent,
-                              firstConnectorStyle: ConnectorStyle.dashedLine,
-                              connectorStyleBuilder: (context, index) {
-                                return ConnectorStyle.solidLine;
-                              },
-                              indicatorStyleBuilder: (context, index) =>
-                                  index == mensagens.length - 1
-                                      ? IndicatorStyle.dot
-                                      : IndicatorStyle.outlined,
-                              oppositeContentsBuilder: (context, index) =>
-                                  Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Text(
-                                  datas[index],
-                                  style: GoogleFonts.bebasNeue(
-                                      fontSize: 12,
-                                      textStyle: Theme.of(context)
-                                          .textTheme
-                                          .headline1
-                                          ?.copyWith(
-                                            color: Colors.black87,
-                                          )),
-                                ),
+                      child: Card(
+                        elevation: 3,
+                        child: SizedBox(
+                          height: widget.heigth * .9,
+                          width: 300,
+                          child: Padding(
+                            padding: const EdgeInsets.all(35.0),
+                            child: Timeline.tileBuilder(
+                              theme: TimelineThemeData(
+                                color: Colors.amber,
                               ),
-                              contentsBuilder: (context, index) => Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      mensagens[index],
-                                      style: GoogleFonts.delaGothicOne(
-                                          fontSize: 12,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .headline1
-                                              ?.copyWith(
-                                                color: Colors.black87,
-                                              )),
-                                    ),
-                                  ],
+                              builder: TimelineTileBuilder.connectedFromStyle(
+                                contentsAlign: ContentsAlign.basic,
+                                connectionDirection: ConnectionDirection.before,
+                                lastConnectorStyle: ConnectorStyle.transparent,
+                                firstConnectorStyle: ConnectorStyle.dashedLine,
+                                connectorStyleBuilder: (context, index) {
+                                  return ConnectorStyle.solidLine;
+                                },
+                                indicatorStyleBuilder: (context, index) =>
+                                    index == mensagens.length - 1
+                                        ? IndicatorStyle.dot
+                                        : IndicatorStyle.outlined,
+                                oppositeContentsBuilder: (context, index) =>
+                                    Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    datas[index],
+                                    style: GoogleFonts.bebasNeue(
+                                        fontSize: 12,
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .headline1
+                                            ?.copyWith(
+                                              color: Colors.black87,
+                                            )),
+                                  ),
                                 ),
+                                contentsBuilder: (context, index) => Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        mensagens[index],
+                                        style: GoogleFonts.delaGothicOne(
+                                            fontSize: 12,
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .headline1
+                                                ?.copyWith(
+                                                  color: Colors.black87,
+                                                )),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                itemCount: mensagens.length,
                               ),
-                              itemCount: mensagens.length,
                             ),
                           ),
                         ),
@@ -137,6 +147,57 @@ class _TimeLineListItemState extends State<TimeLineListItem> {
                   : Container(),
             ],
           ),
+          Column(
+            children: [
+              Card(
+                elevation: 3,
+                //color: Colors.lightBlue[100],
+                child: Container(
+                  height: widget.heigth * .9,
+                  width: widget.width * .7,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: Column(
+                    children: [
+                      Slider(
+                        value: _currentSliderValue,
+                        max: 3,
+                        divisions: 3,
+                        label: slidtext[_currentSliderValue.round()],
+                        onChanged: (double value) {
+                          setState(() {
+                            _currentSliderValue = value;
+                          });
+                        },
+                      ),
+                      Slider(
+                        value: _currentSliderValue,
+                        max: 3,
+                        divisions: 3,
+                        label: slidtext[_currentSliderValue.round()],
+                        onChanged: (double value) {
+                          setState(() {
+                            _currentSliderValue = value;
+                          });
+                        },
+                      ),
+                      Slider(
+                        value: _currentSliderValue,
+                        max: 3,
+                        divisions: 3,
+                        label: slidtext[_currentSliderValue.round()],
+                        onChanged: (double value) {
+                          setState(() {
+                            _currentSliderValue = value;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
