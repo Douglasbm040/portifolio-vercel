@@ -40,6 +40,17 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void setScreen(int screen, double heigth) {
+    setState(() {
+      //_pageController.jumpToPage(screen);
+      _pageController.animateTo(
+        screen * heigth, // Height of each list item
+        duration: Duration(seconds: 1),
+        curve: Curves.ease,
+      );
+    });
+  }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -68,13 +79,16 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
-                    child: Text(
-                      'Douglas Bastos Merencio',
-                      style: GoogleFonts.bebasNeue(
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .headline2
-                              ?.copyWith(color: Colors.black, fontSize: 25)),
+                    child: InkWell(
+                      onTap: () => setScreen(0, height),
+                      child: Text(
+                        'Douglas Bastos Merencio',
+                        style: GoogleFonts.bebasNeue(
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .headline2
+                                ?.copyWith(color: Colors.black, fontSize: 25)),
+                      ),
                     ),
                   ),
                   InkWell(
@@ -114,56 +128,68 @@ class _HomePageState extends State<HomePage> {
             ),
             Expanded(
                 flex: 1,
-                child: Column(children: [
-                  const Icon(Icons.school_rounded),
-                  Text(
-                    "Certificações",
-                    style: GoogleFonts.bebasNeue(
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .headline2
-                            ?.copyWith(color: Colors.black, fontSize: 15)),
-                  )
-                ]) /*Text('Projetos')     */),
+                child: InkWell(
+                  onTap: () => setScreen(1, height),
+                  child: Column(children: [
+                    const Icon(Icons.school_rounded),
+                    Text(
+                      "Certificações",
+                      style: GoogleFonts.bebasNeue(
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .headline2
+                              ?.copyWith(color: Colors.black, fontSize: 15)),
+                    )
+                  ]),
+                ) /*Text('Projetos')     */),
             Expanded(
                 flex: 1,
-                child: Column(children: [
-                  const Icon(Icons.tips_and_updates),
-                  Text(
-                    "Projetos",
-                    style: GoogleFonts.bebasNeue(
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .headline2
-                            ?.copyWith(color: Colors.black, fontSize: 15)),
-                  )
-                ]) /*Text('Artigos')      */),
+                child: InkWell(
+                  onTap: () => setScreen(2, height),
+                  child: Column(children: [
+                    const Icon(Icons.tips_and_updates),
+                    Text(
+                      "Projetos",
+                      style: GoogleFonts.bebasNeue(
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .headline2
+                              ?.copyWith(color: Colors.black, fontSize: 15)),
+                    )
+                  ]),
+                ) /*Text('Artigos')      */),
             Expanded(
                 flex: 1,
-                child: Column(children: [
-                  const Icon(Icons.science_rounded),
-                  Text(
-                    "Pesquisas",
-                    style: GoogleFonts.bebasNeue(
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .headline2
-                            ?.copyWith(color: Colors.black, fontSize: 15)),
-                  )
-                ]) /*Text('Certificações')*/),
+                child: InkWell(
+                  onTap: () => setScreen(3, height),
+                  child: Column(children: [
+                    const Icon(Icons.science_rounded),
+                    Text(
+                      "Pesquisas",
+                      style: GoogleFonts.bebasNeue(
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .headline2
+                              ?.copyWith(color: Colors.black, fontSize: 15)),
+                    )
+                  ]),
+                ) /*Text('Certificações')*/),
             Expanded(
                 flex: 1,
-                child: Column(children: [
-                  const Icon(Icons.article_rounded),
-                  Text(
-                    "Artigos",
-                    style: GoogleFonts.bebasNeue(
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .headline2
-                            ?.copyWith(color: Colors.black, fontSize: 15)),
-                  )
-                ]) /*Text('Pesquisas')    */),
+                child: InkWell(
+                  onTap: () => setScreen(4, height),
+                  child: Column(children: [
+                    const Icon(Icons.article_rounded),
+                    Text(
+                      "Artigos",
+                      style: GoogleFonts.bebasNeue(
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .headline2
+                              ?.copyWith(color: Colors.black, fontSize: 15)),
+                    )
+                  ]),
+                ) /*Text('Pesquisas')    */),
           ],
         ),
       ),
@@ -187,12 +213,17 @@ class _HomePageState extends State<HomePage> {
                   width: width,
                 ),
                 Container(
-                  color: Colors.red,
+                  color: Colors.lightBlueAccent[100],
                   height: height,
                   width: width,
                 ),
                 Container(
                   color: Colors.amber,
+                  height: height,
+                  width: width,
+                ),
+                Container(
+                  color: Colors.redAccent,
                   height: height,
                   width: width,
                 ),
