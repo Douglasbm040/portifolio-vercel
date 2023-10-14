@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
         _controller.play();
         _controller.setLooping(true);
       });
+
     _pageController.addListener(() {
       setState(() {
         currentPage = _pageController.page?.round() ?? 0;
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
     double height =
         MediaQuery.of(context).size.height - AppBar().preferredSize.height;
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(
+    return Scaffold( 
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
