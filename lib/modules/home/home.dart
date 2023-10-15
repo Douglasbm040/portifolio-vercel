@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
     double height =
         MediaQuery.of(context).size.height - AppBar().preferredSize.height;
     double width = MediaQuery.of(context).size.width;
-    return Scaffold( 
+    return Scaffold(
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -267,61 +267,56 @@ class inicialpage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          index != 0
-              ? Container()
-              : Row(
+          Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Expanded(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Stack(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Animate(
-                                    effects: const [
-                                      FadeEffect(duration: Duration(seconds: 1))
-                                    ],
-                                    child: Text(
-                                      "\u{1F44B} Oi, eu sou o Douglas",
-                                      style: GoogleFonts.delaGothicOne(
-                                          fontSize: 15,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .headline2
-                                              ?.copyWith(color: Colors.black)),
-                                    ),
-                                  ),
-                                  Animate(
-                                    effects: const [
-                                      FadeEffect(duration: Duration(seconds: 2))
-                                    ],
-                                    child: Text(
-                                      "Mobile\nDeveloper",
-                                      style: GoogleFonts.delaGothicOne(
-                                          fontSize: 95,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .headline1
-                                              ?.copyWith(
-                                                color: Colors.black87,
-                                              )),
-                                    ),
-                                  ),
-                                  Animate(
-                                    effects: const [
-                                      FadeEffect(duration: Duration(seconds: 2))
-                                    ],
-                                    child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 18.0, horizontal: 150),
-                                        child: Text.rich(
-                                          TextSpan(children: [
-                                            TextSpan(
-                                              text: """   
+                    Stack(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AnimatedOpacity(
+                              duration: const Duration(seconds: 1),
+                              opacity: index == 0 ? 1.0 : 0.0,
+                              child: Text(
+                                "\u{1F44B} Oi, eu sou o Douglas",
+                                style: GoogleFonts.delaGothicOne(
+                                    fontSize: 15,
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        ?.copyWith(color: Colors.black)),
+                              ),
+                            ),
+                            AnimatedOpacity(
+                              duration: const Duration(seconds: 1),
+                              opacity: index == 0 ? 1.0 : 0.0,
+                              child: Text(
+                                "Mobile\nDeveloper",
+                                style: GoogleFonts.delaGothicOne(
+                                    fontSize: 95,
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .headline1
+                                        ?.copyWith(
+                                          color: Colors.black87,
+                                        )),
+                              ),
+                            ),
+                            AnimatedOpacity(
+                              duration: const Duration(seconds: 1),
+                              opacity: index == 0 ? 1.0 : 0.0,
+                              child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 18.0, horizontal: 150),
+                                  child: Text.rich(
+                                    TextSpan(children: [
+                                      TextSpan(
+                                        text: """   
                               Desenvolvedor Mobile apaixonado por explorar
                               as possibilidades da tecnologia para criar 
                               soluções inovadoras.Com experiência em Flutter
@@ -330,72 +325,67 @@ class inicialpage extends StatelessWidget {
                               permitam aplicar minhas habilidades e conhecimentos para 
                               impactar positivamente a vida das pessoas.
                               """,
-                                              style: GoogleFonts.bebasNeue(
-                                                fontSize: 15,
-                                                textStyle: Theme.of(context)
-                                                    .textTheme
-                                                    .headline3
-                                                    ?.copyWith(
-                                                        color: Colors.black54,
-                                                        fontWeight:
-                                                            FontWeight.w100),
-                                              ),
-                                            ),
-                                          ]),
-                                        )),
-                                  )
-                                ],
-                              ),
-                              Animate(
-                                effects: const [
-                                  FadeEffect(duration: Duration(seconds: 3))
-                                ],
-                                child: Positioned(
-                                  right: 50,
-                                  top: 25,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Image.network(
-                                        "https://img.icons8.com/fluency/96/000000/android-os.png",
+                                        style: GoogleFonts.bebasNeue(
+                                          fontSize: 15,
+                                          textStyle: Theme.of(context)
+                                              .textTheme
+                                              .headline3
+                                              ?.copyWith(
+                                                  color: Colors.black54,
+                                                  fontWeight: FontWeight.w100),
+                                        ),
                                       ),
-                                      Column(
-                                        children: [
-                                          Image.network(
-                                              "https://img.icons8.com/fluency/96/000000/flutter.png"),
-                                          SizedBox(
-                                            height: 30,
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                    ]),
+                                  )),
+                            )
+                          ],
+                        ),
+                        Positioned(
+                          right: 50,
+                          top: 25,
+                          child: AnimatedOpacity(
+                            duration: const Duration(seconds: 1),
+                            opacity: index == 0 ? 1.0 : 0.0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Image.network(
+                                  "https://img.icons8.com/fluency/96/000000/android-os.png",
                                 ),
-                              ),
-                            ],
+                                Column(
+                                  children: [
+                                    Image.network(
+                                        "https://img.icons8.com/fluency/96/000000/flutter.png"),
+                                    SizedBox(
+                                      height: 30,
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
-                    ),
-                    Animate(
-                      effects: const [
-                        FadeEffect(duration: Duration(seconds: 3))
+                        ),
                       ],
-                      child: SizedBox(
-                          height: 500,
-                          width: 500,
-                          child: Image.asset("images/phone.png")),
                     ),
+                  ],
+                ),
+              ),
+              AnimatedOpacity(
+                duration: const Duration(seconds: 1),
+                opacity: index == 0 ? 1.0 : 0.0,
+                child: SizedBox(
+                    height: 500,
+                    width: 500,
+                    child: Image.asset("images/phone.png")),
+              ),
 
-                    /*AspectRatio(
+              /*AspectRatio(
                   aspectRatio: _controller.value.aspectRatio,
                   child: VideoPlayer(_controller),
                 ),*/
-                  ],
-                ),
+            ],
+          ),
         ],
       ),
     );

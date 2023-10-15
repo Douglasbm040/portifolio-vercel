@@ -243,220 +243,190 @@ class _TimeLineListItemState extends State<TimeLineListItem> {
       child: Column(
         children: [
           SizedBox(
-            height: widget.heigth * .4,
-            width: widget.width,
-            child: widget.index == 1
-                ? Animate(
-                    effects: const [FadeEffect(duration: Duration(seconds: 2))],
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: -100,
-                          child: Container(
-                            alignment: Alignment.topRight,
-                            height: widget.heigth * .6,
-                            width: widget.width,
-                            child: Timeline.tileBuilder(
-                              //scrollDirection: Axis.horizontal,
-                              theme: TimelineThemeData(
-                                direction: Axis.horizontal,
-                                color: Colors.blueAccent[100],
-                              ),
-                              builder: TimelineTileBuilder.connectedFromStyle(
-                                contentsAlign: ContentsAlign.basic,
-                                connectionDirection: ConnectionDirection.before,
-                                lastConnectorStyle: ConnectorStyle.dashedLine,
-                                firstConnectorStyle: ConnectorStyle.solidLine,
-                                connectorStyleBuilder: (context, index) {
-                                  return ConnectorStyle.solidLine;
-                                },
-                                indicatorStyleBuilder: (context, index) =>
-                                    index == curriculo.length - 1
-                                        ? IndicatorStyle.outlined
-                                        : IndicatorStyle.dot,
-                                oppositeContentsBuilder: (context, index) =>
-                                    Padding(
-                                  padding: const EdgeInsets.all(1.0),
-                                  child: Animate(
-                                    effects: const [
-                                      FadeEffect(duration: Duration(seconds: 2))
-                                    ],
-                                    child: Text(
-                                      curriculo[index]["datas"],
-                                      style: GoogleFonts.bebasNeue(
-                                          fontSize: 12,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .headline1
-                                              ?.copyWith(
-                                                color: Colors.black87,
-                                              )),
-                                    ),
+              height: widget.heigth * .4,
+              width: widget.width,
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: -100,
+                    child: SizedBox(
+                      height: widget.heigth * .6,
+                      width: widget.width,
+                      child: AnimatedOpacity(
+                        duration: const Duration(seconds: 1),
+                        opacity: widget.index == 1 ? 1.0 : 0.0,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                          child: Timeline.tileBuilder(
+                            //scrollDirection: Axis.horizontal,
+                            theme: TimelineThemeData(
+                              direction: Axis.horizontal,
+                              color: Colors.blueAccent[100],
+                            ),
+                            builder: TimelineTileBuilder.connectedFromStyle(
+                              contentsAlign: ContentsAlign.basic,
+                              connectionDirection: ConnectionDirection.before,
+                              lastConnectorStyle: ConnectorStyle.dashedLine,
+                              firstConnectorStyle: ConnectorStyle.solidLine,
+                              connectorStyleBuilder: (context, index) {
+                                return ConnectorStyle.solidLine;
+                              },
+                              indicatorStyleBuilder: (context, index) =>
+                                  index == curriculo.length - 1
+                                      ? IndicatorStyle.outlined
+                                      : IndicatorStyle.dot,
+                              oppositeContentsBuilder: (context, index) =>
+                                  Padding(
+                                padding: const EdgeInsets.all(1.0),
+                                child: Animate(
+                                  effects: const [
+                                    // FadeEffect(duration: Duration(seconds: 2))
+                                  ],
+                                  child: Text(
+                                    curriculo[index]["datas"],
+                                    style: GoogleFonts.bebasNeue(
+                                        fontSize: 12,
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .headline1
+                                            ?.copyWith(
+                                              color: Colors.black87,
+                                            )),
                                   ),
                                 ),
-                                contentsBuilder: (context, index) => Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Column(
-                                    children: [
-                                      Animate(
-                                        effects: const [
-                                          FadeEffect(
-                                              duration: Duration(seconds: 2))
-                                        ],
-                                        child: Card(
-                                          elevation: 2,
-                                          child: SizedBox(
-                                            height: 120,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                children: [
-                                                  CircleAvatar(
-                                                    radius: 25,
-                                                    child: Image.network(
-                                                      curriculo[index]
-                                                          ["imagem"],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Text(
-                                                      curriculo[index]
-                                                          ["titulo"],
-                                                      style: GoogleFonts
-                                                          .delaGothicOne(
-                                                              fontSize: 12,
-                                                              textStyle: Theme.of(
-                                                                      context)
+                              ),
+                              contentsBuilder: (context, index) => Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Column(
+                                  children: [
+                                    Card(
+                                      elevation: 2,
+                                      child: SizedBox(
+                                        height: 120,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            children: [
+                                              CircleAvatar(
+                                                radius: 25,
+                                                child: Image.network(
+                                                  curriculo[index]["imagem"],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  curriculo[index]["titulo"],
+                                                  style:
+                                                      GoogleFonts.delaGothicOne(
+                                                          fontSize: 12,
+                                                          textStyle:
+                                                              Theme.of(context)
                                                                   .textTheme
                                                                   .headline1
                                                                   ?.copyWith(
                                                                     color: Colors
                                                                         .black87,
                                                                   )),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    curriculo[index]["cursos"],
-                                                    style: GoogleFonts
-                                                        .delaGothicOne(
-                                                            fontSize: 10,
-                                                            textStyle: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .headline1
-                                                                ?.copyWith(
-                                                                  color: Colors
-                                                                      .black87,
-                                                                )),
-                                                  ),
-                                                  Text(
-                                                    curriculo[index]["desc"],
-                                                    style: GoogleFonts
-                                                        .delaGothicOne(
-                                                            fontSize: 10,
-                                                            textStyle: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .headline1
-                                                                ?.copyWith(
-                                                                  color: Colors
-                                                                      .black87,
-                                                                )),
-                                                  ),
-                                                ],
+                                                ),
                                               ),
-                                            ),
+                                              Text(
+                                                curriculo[index]["cursos"],
+                                                style:
+                                                    GoogleFonts.delaGothicOne(
+                                                        fontSize: 10,
+                                                        textStyle:
+                                                            Theme.of(context)
+                                                                .textTheme
+                                                                .headline1
+                                                                ?.copyWith(
+                                                                  color: Colors
+                                                                      .black87,
+                                                                )),
+                                              ),
+                                              Text(
+                                                curriculo[index]["desc"],
+                                                style:
+                                                    GoogleFonts.delaGothicOne(
+                                                        fontSize: 10,
+                                                        textStyle:
+                                                            Theme.of(context)
+                                                                .textTheme
+                                                                .headline1
+                                                                ?.copyWith(
+                                                                  color: Colors
+                                                                      .black87,
+                                                                )),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                itemCount: curriculo.length,
                               ),
+                              itemCount: curriculo.length,
                             ),
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  )
-                : Container(),
-          ),
-          widget.index == 1
-              ? Stack(
-                  children: [
-                    Container(
-                        color: Colors.blueAccent[100],
-                        width: widget.width,
-                        height: widget.heigth * .6,
-                        child: Padding(
-                            padding: const EdgeInsets.all(28.0),
-                            child: GridView.count(
-                                controller: controller,
-                                physics: const NeverScrollableScrollPhysics(),
-                                crossAxisCount: 3,
-                                children: List.generate(
-                                  cursos.length,
-                                  (index) => Animate(
-                                    effects: const [
-                                      FadeEffect(duration: Duration(seconds: 2))
-                                    ],
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Column(
-                                        children: [
-                                          Animate(
-                                            effects: const [
-                                              FadeEffect(
-                                                  duration:
-                                                      Duration(seconds: 2))
-                                            ],
-                                            child: Card(
-                                              elevation: 2,
-                                              child: SizedBox(
-                                                width: widget.width / 4,
-                                                height: widget.heigth * .4,
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
+                  ),
+                ],
+              )),
+          AnimatedOpacity(
+            duration: const Duration(seconds: 1),
+            opacity: widget.index == 1 ? 1.0 : 0.0,
+            child: Stack(
+              children: [
+                Container(
+                    color: Colors.blueAccent[100],
+                    width: widget.width,
+                    height: widget.heigth * .6,
+                    child: Padding(
+                        padding: const EdgeInsets.all(28.0),
+                        child: AnimatedOpacity(
+                          duration: const Duration(seconds: 1),
+                          opacity: widget.index == 1 ? 1.0 : 0.0,
+                          child: GridView.count(
+                              controller: controller,
+                              physics: const NeverScrollableScrollPhysics(),
+                              crossAxisCount: 3,
+                              children: List.generate(
+                                cursos.length,
+                                (index) => Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Column(
+                                    children: [
+                                      Card(
+                                        elevation: 2,
+                                        child: SizedBox(
+                                          width: widget.width / 4,
+                                          height: widget.heigth * .4,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              children: [
+                                                Expanded(
+                                                  flex: 2,
+                                                  child: CircleAvatar(
+                                                    radius: 25,
+                                                    child: Image.network(
+                                                      cursos[index]["imagem"],
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 1,
                                                   child: Column(
                                                     children: [
-                                                      CircleAvatar(
-                                                        radius: 25,
-                                                        child: Image.network(
-                                                          cursos[index]
-                                                              ["imagem"],
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Text(
-                                                          cursos[index]
-                                                              ["titulo"],
-                                                          style: GoogleFonts
-                                                              .delaGothicOne(
-                                                                  fontSize: 12,
-                                                                  textStyle: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .headline1
-                                                                      ?.copyWith(
-                                                                        color: Colors
-                                                                            .black87,
-                                                                      )),
-                                                        ),
-                                                      ),
                                                       Text(
-                                                        cursos[index]["cursos"],
+                                                        cursos[index]["titulo"],
                                                         style: GoogleFonts
                                                             .delaGothicOne(
-                                                                fontSize: 10,
+                                                                fontSize: 12,
                                                                 textStyle: Theme.of(
                                                                         context)
                                                                     .textTheme
@@ -467,8 +437,7 @@ class _TimeLineListItemState extends State<TimeLineListItem> {
                                                                     )),
                                                       ),
                                                       Text(
-                                                        cursos[index]
-                                                            ["situacao"],
+                                                        cursos[index]["cursos"],
                                                         style: GoogleFonts
                                                             .delaGothicOne(
                                                                 fontSize: 10,
@@ -498,25 +467,58 @@ class _TimeLineListItemState extends State<TimeLineListItem> {
                                                     ],
                                                   ),
                                                 ),
-                                              ),
+                                                Row(
+                                                  children: [
+                                                    Card(
+                                                      color: cursos[index][
+                                                                  "situacao"] ==
+                                                              "Concluido"
+                                                          ? Colors.green
+                                                          : Colors.amber,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Text(
+                                                          cursos[index]
+                                                              ["situacao"],
+                                                          style: GoogleFonts
+                                                              .delaGothicOne(
+                                                                  fontSize: 10,
+                                                                  textStyle: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .headline1
+                                                                      ?.copyWith(
+                                                                        color: Colors
+                                                                            .white,
+                                                                      )),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
+                                    ],
                                   ),
-                                )))),
-                    Positioned(
-                        right: 20,
-                        bottom: 20,
-                        child: ElevatedButton(
-                            onPressed: Scrolling,
-                            child: isscroll
-                                ? Icon(Icons.keyboard_arrow_up_outlined)
-                                : Icon(Icons.keyboard_arrow_down_rounded)))
-                  ],
-                )
-              : Container()
+                                ),
+                              )),
+                        ))),
+                Positioned(
+                    right: 20,
+                    bottom: 20,
+                    child: ElevatedButton(
+                        onPressed: Scrolling,
+                        child: isscroll
+                            ? Icon(Icons.keyboard_arrow_up_outlined)
+                            : Icon(Icons.keyboard_arrow_down_rounded)))
+              ],
+            ),
+          )
         ],
       ),
     );
