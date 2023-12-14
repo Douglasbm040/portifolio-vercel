@@ -1,13 +1,8 @@
-import 'dart:js_util';
 
 import 'package:animated_number/animated_number.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/scheduler/ticker.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:group_button/group_button.dart';
-import 'package:read_more_text/read_more_text.dart';
 import 'package:timelines/timelines.dart';
 
 class TimeLineListItem extends StatefulWidget {
