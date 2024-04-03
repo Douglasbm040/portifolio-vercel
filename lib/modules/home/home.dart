@@ -126,12 +126,33 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+            /*Text('Projetos')     */
             Expanded(
                 flex: 1,
                 child: InkWell(
                   onTap: () => setScreen(1, height),
                   child: Column(children: [
-                    const Icon(Icons.school_rounded),
+                    const Icon(
+                      Icons.work_outline_outlined,
+                      color: Colors.blueAccent,
+                    ),
+                    Text(
+                      "Experiencias",
+                      style: GoogleFonts.bebasNeue(
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .headline2
+                              ?.copyWith(
+                                  color: Colors.blueAccent, fontSize: 15)),
+                    )
+                  ]),
+                ) /*Text('Artigos')      */),
+            Expanded(
+                flex: 1,
+                child: InkWell(
+                  onTap: () => setScreen(2, height),
+                  child: Column(children: [
+                    const Icon(Icons.school_outlined),
                     Text(
                       "Certificações",
                       style: GoogleFonts.bebasNeue(
@@ -145,32 +166,16 @@ class _HomePageState extends State<HomePage> {
             Expanded(
                 flex: 1,
                 child: InkWell(
-                  onTap: () => setScreen(2, height),
+                  onTap: () => setScreen(3, height),
                   child: Column(children: [
-                    const Icon(Icons.tips_and_updates),
+                    const Icon(Icons.science_outlined, color: Colors.amber),
                     Text(
                       "Projetos",
                       style: GoogleFonts.bebasNeue(
                           textStyle: Theme.of(context)
                               .textTheme
                               .headline2
-                              ?.copyWith(color: Colors.black, fontSize: 15)),
-                    )
-                  ]),
-                ) /*Text('Artigos')      */),
-            Expanded(
-                flex: 1,
-                child: InkWell(
-                  onTap: () => setScreen(3, height),
-                  child: Column(children: [
-                    const Icon(Icons.science_rounded),
-                    Text(
-                      "Pesquisas",
-                      style: GoogleFonts.bebasNeue(
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .headline2
-                              ?.copyWith(color: Colors.black, fontSize: 15)),
+                              ?.copyWith(color: Colors.amber, fontSize: 15)),
                     )
                   ]),
                 ) /*Text('Certificações')*/),
@@ -179,14 +184,14 @@ class _HomePageState extends State<HomePage> {
                 child: InkWell(
                   onTap: () => setScreen(4, height),
                   child: Column(children: [
-                    const Icon(Icons.article_rounded),
+                    const Icon(Icons.article_outlined, color: Colors.red),
                     Text(
-                      "Artigos",
+                      "Publicações",
                       style: GoogleFonts.bebasNeue(
                           textStyle: Theme.of(context)
                               .textTheme
                               .headline2
-                              ?.copyWith(color: Colors.black, fontSize: 15)),
+                              ?.copyWith(color: Colors.red, fontSize: 15)),
                     )
                   ]),
                 ) /*Text('Pesquisas')    */),
@@ -207,14 +212,133 @@ class _HomePageState extends State<HomePage> {
                   heigth: height,
                   width: width,
                 ),
+                Container(
+                  color: Colors.lightBlueAccent,
+                  height: height,
+                  width: width,
+                  child: Stack(
+                    children: [
+                      Container(
+                        color: Colors.lightBlueAccent[100],
+                        width: width * .35,
+                        height: height,
+                        child: animatedTimeLine(
+                            color: Colors.white70,
+                            isHorizontal: false,
+                            padding: 5,
+                            isOpacity: currentPage == 1,
+                            curriculo: [
+                              {
+                                "datas": "Agosto/2022 - Atualmente",
+                                "imagem":
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_Ufes.png/240px-Logo_Ufes.png",
+                                "titulo": "Conexos",
+                                "cursos": "Estágio de Desenvolvimento",
+                                "desc": "PL-SQL | ORACLE | JASPER"
+                              },
+                              {
+                                "datas": "Setembro/2022 - Atualmente",
+                                "imagem":
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_Ufes.png/240px-Logo_Ufes.png",
+                                "titulo": "UFES",
+                                "cursos": "Iniciação cientifica",
+                                "desc": "FLUTTER | PYTHON | C++ "
+                              },
+                              {
+                                "datas": "Setembro/2022 - Atualmente",
+                                "imagem":
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_Ufes.png/240px-Logo_Ufes.png",
+                                "titulo": "UFES",
+                                "cursos": "Consultor",
+                                "desc": "FLUTTER | Firebase"
+                              }
+                            ]),
+                      ),
+                      Positioned(
+                        right: 0,
+                        child: AnimatedOpacity(
+                          duration: const Duration(seconds: 2),
+                          opacity: currentPage == 1 ? 1.0 : 0.0,
+                          child: Container(
+                            color: Colors.lightBlueAccent[400],
+                            width: width * .6,
+                            height: height,
+                            child: Center(
+                              child: ListView(
+                                children: [
+                                  Card(
+                                    elevation: 5,
+                                    child: Text(
+                                      """
+                                        Estágio Conexos:
+                                        1. Padronização de interfaces de parâmetros dos relatórios: reflexos na melhorar a experiência do usuário e redução bugs
+                                        2. Escrita de artigos técnicos: reflexos redução de bugs e tempo de manutenção 
+                                        3. Documentação de rotinas: reflexos Unificação do conhecimento da equipe e treinamento de estagiários.
+                                        4. Protótipo de sistema de compartilhamento de soluções de bugs comuns
+                                        5. Desenvolvimento de procedimento construtor de query para levantamento de orçamento.
+                                        6. Proposta de documento padrão para testes de relatórios
+                                      """,
+                                      style: GoogleFonts.bebasNeue(
+                                          textStyle: Theme.of(context)
+                                              .textTheme
+                                              .headline2
+                                              ?.copyWith(
+                                                  color: Colors.black,
+                                                  fontSize: 15)),
+                                    ),
+                                  ),
+                                  Card(
+                                    elevation: 5,
+                                    child: Text(
+                                      """
+                                      Iniciação Cientifica:
+                                      Sendo o desenvolvedor principal do projeto, desenvolvi a integração do Esp32 com o celular
+                                      usando tecnologias como: Flutter, Firebase e Bluetooth LE. O projeto foi desenvolvido em 
+                                      Arquitetura limpa e TDD para garantir a qualidade do código. Além disso implementei uma esteira
+                                      de CI para executar os testes automatizados com GitHub Actions.                     
+                                      """,
+                                      style: GoogleFonts.bebasNeue(
+                                          textStyle: Theme.of(context)
+                                              .textTheme
+                                              .headline2
+                                              ?.copyWith(
+                                                  color: Colors.black,
+                                                  fontSize: 15)),
+                                    ),
+                                  ),
+                                  Card(
+                                    elevation: 5,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        """
+                                    Consultor Flutter:
+                                    Sendo referência técnica durante o projeto, auxiliei na implementação da arquitetura
+                                    e modelagem tanto da autenticação quanto o banco de dados via FIREBASE.
+                                       
+                                        """,
+                                        style: GoogleFonts.bebasNeue(
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .headline2
+                                                ?.copyWith(
+                                                    color: Colors.black,
+                                                    fontSize: 15)),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 TimeLineListItem(
                   index: currentPage,
                   heigth: height,
-                  width: width,
-                ),
-                Container(
-                  color: Colors.lightBlueAccent[100],
-                  height: height,
                   width: width,
                 ),
                 Container(

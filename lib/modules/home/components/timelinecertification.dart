@@ -1,4 +1,3 @@
-
 import 'package:animated_number/animated_number.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -132,20 +131,12 @@ class _TimeLineListItemState extends State<TimeLineListItem> {
       "desc": "FLUTTER | HTML + JS + CSS | JAVA | PYTHON "
     },
     {
-      "datas": "Agosto/2022 - Atualmente",
-      "imagem":
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_Ufes.png/240px-Logo_Ufes.png",
-      "titulo": "Conexos",
-      "cursos": "Estágio de Desenvolvimento",
-      "desc": "PL-SQL | ORACLE | JASPER"
-    },
-    {
-      "datas": "Setembro/2022 - Atualmente",
+      "datas": "Atualmente - previsão 2024",
       "imagem":
           "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_Ufes.png/240px-Logo_Ufes.png",
       "titulo": "UFES",
-      "cursos": "Iniciação cientifica",
-      "desc": "FLUTTER | PYTHON | C++ "
+      "cursos": "Pós graduando em cidades inteligentes",
+      "desc": "Analise de dados | Banco de Dados "
     },
     {
       "datas": "Atualmente - previsão 2024",
@@ -244,136 +235,23 @@ class _TimeLineListItemState extends State<TimeLineListItem> {
                 children: [
                   Positioned(
                     top: -100,
-                    child: SizedBox(
-                      height: widget.heigth * .6,
-                      width: widget.width,
-                      child: AnimatedOpacity(
-                        duration: const Duration(seconds: 1),
-                        opacity: widget.index == 1 ? 1.0 : 0.0,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                          child: Timeline.tileBuilder(
-                            //scrollDirection: Axis.horizontal,
-                            theme: TimelineThemeData(
-                              direction: Axis.horizontal,
-                              color: Colors.blueAccent[100],
-                            ),
-                            builder: TimelineTileBuilder.connectedFromStyle(
-                              contentsAlign: ContentsAlign.basic,
-                              connectionDirection: ConnectionDirection.before,
-                              lastConnectorStyle: ConnectorStyle.dashedLine,
-                              firstConnectorStyle: ConnectorStyle.solidLine,
-                              connectorStyleBuilder: (context, index) {
-                                return ConnectorStyle.solidLine;
-                              },
-                              indicatorStyleBuilder: (context, index) =>
-                                  index == curriculo.length - 1
-                                      ? IndicatorStyle.outlined
-                                      : IndicatorStyle.dot,
-                              oppositeContentsBuilder: (context, index) =>
-                                  Padding(
-                                padding: const EdgeInsets.all(1.0),
-                                child: Animate(
-                                  effects: const [
-                                    // FadeEffect(duration: Duration(seconds: 2))
-                                  ],
-                                  child: Text(
-                                    curriculo[index]["datas"],
-                                    style: GoogleFonts.bebasNeue(
-                                        fontSize: 12,
-                                        textStyle: Theme.of(context)
-                                            .textTheme
-                                            .headline1
-                                            ?.copyWith(
-                                              color: Colors.black87,
-                                            )),
-                                  ),
-                                ),
-                              ),
-                              contentsBuilder: (context, index) => Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Column(
-                                  children: [
-                                    Card(
-                                      elevation: 2,
-                                      child: SizedBox(
-                                        height: 120,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(
-                                            children: [
-                                              CircleAvatar(
-                                                radius: 25,
-                                                child: Image.network(
-                                                  curriculo[index]["imagem"],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  curriculo[index]["titulo"],
-                                                  style:
-                                                      GoogleFonts.delaGothicOne(
-                                                          fontSize: 12,
-                                                          textStyle:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .headline1
-                                                                  ?.copyWith(
-                                                                    color: Colors
-                                                                        .black87,
-                                                                  )),
-                                                ),
-                                              ),
-                                              Text(
-                                                curriculo[index]["cursos"],
-                                                style:
-                                                    GoogleFonts.delaGothicOne(
-                                                        fontSize: 10,
-                                                        textStyle:
-                                                            Theme.of(context)
-                                                                .textTheme
-                                                                .headline1
-                                                                ?.copyWith(
-                                                                  color: Colors
-                                                                      .black87,
-                                                                )),
-                                              ),
-                                              Text(
-                                                curriculo[index]["desc"],
-                                                style:
-                                                    GoogleFonts.delaGothicOne(
-                                                        fontSize: 10,
-                                                        textStyle:
-                                                            Theme.of(context)
-                                                                .textTheme
-                                                                .headline1
-                                                                ?.copyWith(
-                                                                  color: Colors
-                                                                      .black87,
-                                                                )),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              itemCount: curriculo.length,
-                            ),
-                          ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: widget.heigth * .6,
+                          width: widget.width,
+                          child: animatedTimeLine(
+                              isOpacity: widget.index == 2,
+                              curriculo: curriculo),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ],
               )),
           AnimatedOpacity(
             duration: const Duration(seconds: 1),
-            opacity: widget.index == 1 ? 1.0 : 0.0,
+            opacity: widget.index == 2 ? 1.0 : 0.0,
             child: Stack(
               children: [
                 Container(
@@ -384,7 +262,7 @@ class _TimeLineListItemState extends State<TimeLineListItem> {
                         padding: const EdgeInsets.all(28.0),
                         child: AnimatedOpacity(
                           duration: const Duration(seconds: 1),
-                          opacity: widget.index == 1 ? 1.0 : 0.0,
+                          opacity: widget.index == 2 ? 1.0 : 0.0,
                           child: GridView.count(
                               controller: controller,
                               physics: const NeverScrollableScrollPhysics(),
@@ -515,6 +393,133 @@ class _TimeLineListItemState extends State<TimeLineListItem> {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class animatedTimeLine extends StatelessWidget {
+  const animatedTimeLine({
+    super.key,
+    required this.isOpacity,
+    required this.curriculo,
+    this.isHorizontal = true,
+    this.padding = 50.0,
+    this.color = Colors.blueAccent,
+  });
+
+  final bool isOpacity;
+  final bool isHorizontal;
+  final double padding;
+  final Color? color;
+  final List<Map<String, dynamic>> curriculo;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedOpacity(
+      duration: const Duration(seconds: 1),
+      opacity: isOpacity ? 1.0 : 0.0,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: padding),
+        child: Timeline.tileBuilder(
+          //scrollDirection: Axis.horizontal,
+          theme: TimelineThemeData(
+            direction: isHorizontal ? Axis.horizontal : Axis.vertical,
+            color: color,
+          ),
+          builder: TimelineTileBuilder.connectedFromStyle(
+            contentsAlign: ContentsAlign.basic,
+            connectionDirection: ConnectionDirection.before,
+            lastConnectorStyle: ConnectorStyle.dashedLine,
+            firstConnectorStyle: ConnectorStyle.solidLine,
+            connectorStyleBuilder: (context, index) {
+              return ConnectorStyle.solidLine;
+            },
+            indicatorStyleBuilder: (context, index) =>
+                index == curriculo.length - 1
+                    ? IndicatorStyle.outlined
+                    : IndicatorStyle.dot,
+            oppositeContentsBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: Animate(
+                effects: const [
+                  // FadeEffect(duration: Duration(seconds: 2))
+                ],
+                child: Text(
+                  curriculo[index]["datas"],
+                  style: GoogleFonts.bebasNeue(
+                      fontSize: 12,
+                      textStyle:
+                          Theme.of(context).textTheme.headline1?.copyWith(
+                                color: Colors.black87,
+                              )),
+                ),
+              ),
+            ),
+            contentsBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Column(
+                children: [
+                  Card(
+                    elevation: 2,
+                    child: SizedBox(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              radius: 25,
+                              child: Image.network(
+                                curriculo[index]["imagem"],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                curriculo[index]["titulo"],
+                                style: GoogleFonts.delaGothicOne(
+                                    fontSize: 12,
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .headline1
+                                        ?.copyWith(
+                                          color: Colors.black87,
+                                        )),
+                              ),
+                            ),
+                            Text(
+                              curriculo[index]["cursos"],
+                              style: GoogleFonts.delaGothicOne(
+                                  fontSize: 10,
+                                  textStyle: Theme.of(context)
+                                      .textTheme
+                                      .headline1
+                                      ?.copyWith(
+                                        color: Colors.black87,
+                                      )),
+                            ),
+                            Text(
+                              curriculo[index]["desc"],
+                              style: GoogleFonts.delaGothicOne(
+                                  fontSize: 10,
+                                  textStyle: Theme.of(context)
+                                      .textTheme
+                                      .headline1
+                                      ?.copyWith(
+                                        color: Colors.black87,
+                                      )),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            itemCount: curriculo.length,
+          ),
+        ),
       ),
     );
   }
